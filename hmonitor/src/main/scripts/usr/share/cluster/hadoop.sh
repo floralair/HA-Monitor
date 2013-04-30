@@ -16,7 +16,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 # 
- 
+
 
 
 # This is a resource agent for controlling hadoop daemons from 
@@ -60,7 +60,7 @@ HAPROBE=${HADOOP_HOME}/monitor/haprobe.sh
 # Input: a command and arguments
 # out: 0 or OCF_ERR_GENERIC.
 ocf_run() {
-  
+
   out=`"$@" 2>&1`
   #`"$@"`
   retval=$?
@@ -272,10 +272,10 @@ stop() {
     ocf_log err "Failed to stop ${program} ${OCF_RESKEY_daemon}"
     return ${OCF_ERR_GENERIC}
   fi
-  
+    
   echo
   # Spin waiting for shutdown
-  
+    
 #  while url_check
 #  do
 #    ocf_log debug "Resource has not stopped yet, waiting"
@@ -315,7 +315,7 @@ status_check() {
 
 #    assert_arguments_are_valid
     ocf_log info "Checking ${OCF_RESKEY_daemon}, Level ${OCF_CHECK_LEVEL}"
-   
+
     #look for the check level as in some tests it isn't set 
     if [ "x" == "x${OCF_CHECK_LEVEL}" ]
     then 
@@ -326,7 +326,7 @@ status_check() {
     # website check
 #    url_check
 #    retval=$?
-    
+
 #    retval=pid_check
 #    if [ $retval -ne 0 ]
 #    then
@@ -334,10 +334,10 @@ status_check() {
 #    fi
 #  
 #    [ "${OCF_CHECK_LEVEL}" -lt 10 ] && exit ${retval}
-  
+
     # Depth level 10 check
 
-    
+
     dfs_check
     retval=$?
 #
@@ -350,7 +350,7 @@ status_check() {
 
 # HA probe
 dfs_check() {
- 
+
   ocf_run "${HAPROBE}" --file ${OCF_RESKEY_path}  --pid ${OCF_RESKEY_pid} --url ${OCF_RESKEY_url} --timeout ${OCF_RESKEY_probetime}
   if [ $? -ne 0 ]
   then
@@ -363,7 +363,7 @@ dfs_check() {
 # Run a bootstrap check
 # this can include different probes and timeouts
 dfs_bootstrap_check() {
- 
+
   ocf_run "${HAPROBE}" --file ${OCF_RESKEY_path}  --pid ${OCF_RESKEY_pid} --url ${OCF_RESKEY_url} --timeout ${OCF_RESKEY_probetime} --boottimeout ${OCF_RESKEY_boottime} --waitfs ${OCF_RESKEY_waitfs}
   if [ $? -ne 0 ]
   then
@@ -405,12 +405,12 @@ dump_environment() {
 # this assumes that the defaults have been pushed in so only check for existence of the mandatory properties
 # and that the numeric properties are valid
 validate_arguments_and_state() {
-  if	[ "x" == "x${OCF_RESKEY_daemon}" ] ; then
+  if [ "x" == "x${OCF_RESKEY_daemon}" ] ; then
     dump_environment
     ocf_log err "required property 'daemon' is unset"
     return ${OCF_ERR_ARGS};
   fi
-  
+
   if ! ocf_is_decimal "${OCF_RESKEY_boottime}"; then
     ocf_log err "Option 'boottime' is not numeric!"
     return ${OCF_ERR_CONFIGURED}
@@ -421,7 +421,7 @@ validate_arguments_and_state() {
     return ${OCF_ERR_CONFIGURED}
   fi
 
-  
+
   verify_binary
   return $?
 }
@@ -455,8 +455,8 @@ case "$1" in
     if ! stop; then
       exit ${OCF_ERR_GENERIC}
     fi
-	  exit 0
-	  ;;
+    exit 0
+    ;;
 
   status|monitor)
     # check the status of the live system
@@ -481,7 +481,7 @@ case "$1" in
     validate_arguments_and_state
     exit $?
     ;;
-    
+
   # this is a non-standard operation to work out what is going on  
   diagnostics)
     echo PATH=${PATH}
@@ -490,11 +490,11 @@ case "$1" in
     dump_environment
     exit 0
     ;;
-    
+
   *)
     echo $"Usage: $0 {start|stop|status|monitor|restart|recover|validate-all|meta-data|diagnostics}"
-	  exit ${OCF_ERR_UNIMPLEMENTED}
-	  ;;
-	  
+    exit ${OCF_ERR_UNIMPLEMENTED}
+    ;;
+
 esac
 
