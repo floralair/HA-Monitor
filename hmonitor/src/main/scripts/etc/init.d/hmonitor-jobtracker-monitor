@@ -21,7 +21,7 @@
 # description: Hadoop JobTracker monitor
 
 . /etc/rc.d/init.d/functions
-USER=hdfs
+USER=mapred
 HUSER=${USER}
 . /etc/hadoop/conf/hadoop-env.sh
 
@@ -43,7 +43,6 @@ MONITOR_CONF_DIR=$MONITOR_HOME
 MONITOR_CLASS="org.apache.ambari.servicemonitor.services.JobTrackerMonitor"
 MONITOR_CONF_FILE="$MONITOR_HOME/vm-jobtracker.xml"
 
-HUSER=mapred
 export HADOOP_PID_DIR=${HADOOP_PID_DIR:-/var/run/hadoop}
 PIDFILE="${HADOOP_PID_DIR}/hadoop-$HUSER-${MONITOR_CLASS}.pid"
 
