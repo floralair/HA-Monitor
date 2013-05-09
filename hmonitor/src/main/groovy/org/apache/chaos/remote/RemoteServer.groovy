@@ -164,21 +164,25 @@ class RemoteServer implements UserInfo, UIKeyboardInteractive {
     return clustat
   }
 
-  void  waitForServerLive(int timeout) {
-    long endtime = System.currentTimeMillis()+ timeout
+  void waitForServerLive(int timeout) {
+    long endtime = System.currentTimeMillis() + timeout
     boolean live = false;
-    
+
     while (!live && System.currentTimeMillis() < endtime) {
       try {
         command("true")
-        live =true
+        live = true
         break
       } catch (IOException ignored) {
         Thread.sleep(1000)
       }
-      
+
     }
-    
+
   }
-  
+
+  @Override
+  String toString() {
+    return "Remote server user=$username @ host=$host"
+  }
 }
