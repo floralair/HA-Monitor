@@ -73,6 +73,8 @@ class BaseRemoteTestCase extends TestCase {
 
 
   RemoteServer createServer(String server, String user) {
+    assert server != null && !server.isEmpty()
+    assert user != null && !user.isEmpty()
     new RemoteServer(
         host: server,
         username: user,

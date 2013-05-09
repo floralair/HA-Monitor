@@ -32,7 +32,9 @@ class RHClustatTest extends RHTestCase {
     if (!enabled()) {
       return
     }
+    assert nnServer != null
     Clustat clustat = nnServer.clustat()
+    assert clustat != null
     String host = clustat.hostRunningService(SERVICE_GROUP_NAMENODE)
     assert nnServer.host == host
 

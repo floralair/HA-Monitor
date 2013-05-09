@@ -157,13 +157,13 @@ class RemoteServer implements UserInfo, UIKeyboardInteractive {
 
   Clustat clustat() {
     def (status, text) = command("clustat -x")
-    if (status!=0) {
+    if (status != 0) {
       throw new IOException("Clustat command failed [$status]: $text")
     }
     Clustat clustat = new Clustat(text)
     return clustat
   }
-  
+
   void  waitForServerLive(int timeout) {
     long endtime = System.currentTimeMillis()+ timeout
     boolean live = false;

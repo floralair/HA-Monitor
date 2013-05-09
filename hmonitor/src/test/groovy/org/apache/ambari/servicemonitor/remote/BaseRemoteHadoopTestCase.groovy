@@ -49,7 +49,8 @@ class BaseRemoteHadoopTestCase extends BaseRemoteTestCase {
   protected void setUp() {
     super.setUp()
     bindSSHKey()
-    nnServer = rootServer(requiredSysprop(NN_SERVER))
+    def nnServerName = requiredSysprop(NN_SERVER)
+    nnServer = rootServer(nnServerName)
     jtServer = rootServer(requiredSysprop(JT_SERVER))
     namenodeActions = new RemoteDaemonOperations(nnServer, "namenode")
     jobtrackerActions = new RemoteDaemonOperations(jtServer, "jobtracker")
