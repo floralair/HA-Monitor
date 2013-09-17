@@ -55,7 +55,7 @@
 
   <property>
     <name>service.monitor.portprobe.host</name>
-    <description>Port to probe via a telnet operation</description>
+    <description>Host to probe via a telnet operation</description>
     <value>localhost</value>
   </property>
 
