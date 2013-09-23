@@ -38,7 +38,7 @@
       is used when monitoring/interacting with the Job Tracker,
       and must match the external hostname of the Job Tracker.
     </description>
-    <value>HOSTNAME:8021</value>
+    <value>HOSTNAME:50300</value>
   </property>
 
   <property>
@@ -50,7 +50,7 @@
   <property>
     <name>service.monitor.portprobe.port</name>
     <description>Port to probe via a telnet operation</description>
-    <value>8021</value>
+    <value>50300</value>
   </property>
 
   <property>
