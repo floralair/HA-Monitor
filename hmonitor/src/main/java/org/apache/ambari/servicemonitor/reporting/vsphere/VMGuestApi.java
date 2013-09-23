@@ -83,11 +83,15 @@ public class VMGuestApi {
    * Get the monitoring status with the status string converted into lower case
    * to be the same as the constants.
    *
-   * @return the monitoring status.
+   * @return the monitoring status, or "" if none could be determined
    */
   public String getMonitoringStatus() {
     String statStr = getAppStatus();
-    return statStr.toLowerCase(Locale.ENGLISH);
+    if (statStr != null) {
+      return statStr.toLowerCase(Locale.ENGLISH);
+    } else {
+      return "";
+    }
   }
 
 
