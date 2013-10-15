@@ -38,6 +38,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.security.UserGroupInformation;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -115,6 +116,19 @@ public class Monitor extends ToolPlusImpl implements MonitorKeys, Interrupted {
       conf.getInt(MONITOR_REPORT_INTERVAL, REPORT_INTERVAL_DEFAULT);
     int probeTimeout = conf.getInt(MONITOR_PROBE_TIMEOUT, PROBE_TIMEOUT_DEFAULT);
     int bootstrapTimeout = conf.getInt(MONITOR_BOOTSTRAP_TIMEOUT, BOOTSTRAP_TIMEOUT_DEFAULT);
+
+    boolean krb5Enabled = conf.getBoolean(MONITOR_KRB5_ENABLED, MONITOR_DEFAULT_KRB5_ENABLED);
+    String krb5Principal = conf.get(MONITOR_KRB5_PRINCIPAL, MONITOR_DEFAULT_KRB5_PRINCIPAL);
+    String krb5Keytab = conf.get(MONITOR_KRB5_KEYTAB, MONITOR_DEFAULT_KRB5_KEYTAB);
+
+    if (LOG.isInfoEnabled())  {
+      LOG.info("krb5Enabled = " + krb5Enabled + ", krb5Principal = " + krb5Principal +
+              ", krb5Keyab = " + krb5Keytab);
+    }
+    if (krb5Enabled) {
+      UserGroupInformation.loginUserFromKeytab(krb5Principal, krb5Keytab);
+      UserGroupInformation.getLoginUser();
+    }
 
     List<Probe> probes = new ArrayList<Probe>();
     if (conf.getBoolean(PORT_PROBE_ENABLED, false)) {

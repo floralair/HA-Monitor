@@ -144,7 +144,7 @@
   <property>
     <name>service.monitor.webprobe.max</name>
     <description>Maximum acceptable HTTP code (After redirects)</description>
-    <value>200</value>
+    <value>403</value>
   </property>
 
   <property>
@@ -166,6 +166,24 @@
       bootstrap until then.
     </description>
     <value>true</value>
+  </property>
+
+  <property>
+    <name>service.monitor.krb5Enabled</name>
+    <description>Is monitor kerberos enabled, set it to true if the hadoop cluster is secured with kerberos</description>
+    <value>false</value>
+  </property>
+
+  <property>
+    <name>service.monitor.krb5Principal</name>
+    <description>kerberos principal</description>
+    <value>hdfs/sandbox@EXAMPLE.COM</value>
+  </property>
+
+  <property>
+    <name>service.monitor.krb5Keytab</name>
+    <description>kerberos keytab for the principal</description>
+    <value>/etc/security/keytabs/hdfs.headless.keytab</value>
   </property>
 
 </configuration>

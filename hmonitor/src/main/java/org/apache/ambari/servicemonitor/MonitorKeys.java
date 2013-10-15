@@ -276,4 +276,32 @@ public interface MonitorKeys extends HadoopKeys {
   String PID_PROBE_PIDFILE =
     MONITOR_KEY_PREFIX + "pidprobe.pidfile";
 
+    /**
+     * Is monitor kerberos enabled
+     */
+    String MONITOR_KRB5_ENABLED =
+            MONITOR_KEY_PREFIX + "krb5Enabled";
+    /**
+     * Default for : is monitor kerberos enabled
+     */
+    boolean MONITOR_DEFAULT_KRB5_ENABLED =  false;
+    /**
+     * Monitor kerberos principal
+     */
+    String MONITOR_KRB5_PRINCIPAL =
+            MONITOR_KEY_PREFIX + "krb5Principal";
+    /**
+     * Default for : Monitor kerberos principal
+     */
+    String MONITOR_DEFAULT_KRB5_PRINCIPAL =  "hdfs/sandbox@EXAMPLE.COM";
+    /**
+     * Monitor kerberos principal
+     */
+    String MONITOR_KRB5_KEYTAB =
+            MONITOR_KEY_PREFIX + "krb5Keytab";
+    /**
+     * Default for : Monitor kerberos principal
+     */
+    String MONITOR_DEFAULT_KRB5_KEYTAB =  "/etc/security/keytabs/hdfs.headless.keytab";
+
 }
